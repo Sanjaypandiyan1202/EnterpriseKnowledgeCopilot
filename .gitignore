@@ -1,0 +1,15 @@
+# Visual Studio
+.vs/
+**/.vs/
+**/bin/
+**/obj/
+
+# Angular
+**/node_modules/
+**/dist/
+**/.angular/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example

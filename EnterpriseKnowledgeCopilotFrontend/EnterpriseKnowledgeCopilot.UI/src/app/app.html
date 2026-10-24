@@ -1,0 +1,42 @@
+
+<div class="chat-container">
+  <header>
+    <h1>Enterprise Knowledge Copilot</h1>
+    <p>Ask questions about your company documents</p>
+
+    <!-- Backend connection status -->
+    <div *ngIf="apiResponse as response" class="connection-status">
+      <span>🟢 Backend connected successfully!</span>
+      <small>{{ response.status }} — {{ response.application }}</small>
+    </div>
+
+    <div *ngIf="errorMessage" class="connection-error">
+      🔴 {{ errorMessage }}
+    </div>
+  </header>
+
+  <main class="messages">
+    <div *ngIf="messages.length === 0" class="welcome">
+      <h2>How can I help you?</h2>
+      <p>Ask a question to get started.</p>
+    </div>
+
+    <div
+      *ngFor="let message of messages"
+      class="message"
+      [class.user]="message.role === 'user'">
+      {{ message.text }}
+    </div>
+  </main>
+
+  <form (ngSubmit)="sendMessage()">
+    <input
+      type="text"
+      name="question"
+      [(ngModel)]="question"
+      placeholder="Ask a question..."
+      autocomplete="off" />
+
+    <button type="submit">Send</button>
+  </form>
+</div>
